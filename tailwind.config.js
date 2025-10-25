@@ -15,7 +15,8 @@ content: [
         s250: '#ffd3d3',
         n750: '#404040',
         n500: '#d7d7d7',
-        n250: '#f2f2f2'
+        n250: '#f2f2f2',
+        g333: '#333333'
       },
       fontFamily: {
       jakarta: ['"Plus Jakarta Sans"', 'sans-serif'],

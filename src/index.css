@@ -5,7 +5,7 @@
 @tailwind utilities;
 
 .input-reg {
-  @apply font-jakarta w-full p-3 px-6 rounded-lg border border-gray-300 hover:scale-105 focus:ring-2 focus:outline-none transition duration-200 shadow-sm placeholder-[#B0A9A9] h-14;
+  @apply font-jakarta text-g333 w-full p-3 px-6 rounded-lg border border-gray-300 hover:scale-105 focus:ring-2 focus:outline-none transition duration-200 shadow-sm placeholder-[#B0A9A9] h-14;
 }
 
 /* :root {

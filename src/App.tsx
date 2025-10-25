@@ -1,4 +1,4 @@
-import './App.css'
+import LoginPage from './pages/LoginPage'
 import RegisterPage from './pages/RegisterPage'
 
 function App() {
@@ -6,7 +6,8 @@ function App() {
   return (
 
     <div className='bg-n250 min-h-screen'>
-    <RegisterPage />
+    {/* <RegisterPage /> */}
+    <LoginPage/>
     </div>
   )
 }
