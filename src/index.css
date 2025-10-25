@@ -1,4 +1,14 @@
-:root {
+@import url("https://fonts.googleapis.com/css2?family=Host+Grotesk:ital,wght@0,300..800;1,300..800&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.input-reg {
+  @apply font-jakarta w-full p-3 px-6 rounded-lg border border-gray-300 hover:scale-105 focus:ring-2 focus:outline-none transition duration-200 shadow-sm placeholder-[#B0A9A9] h-14;
+}
+
+/* :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -65,4 +75,7 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
-}
+} */
+/* body {
+  background-color: #f2f2f2;
+} */
