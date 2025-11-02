@@ -1,16 +1,28 @@
 import React, { useState } from 'react'
+import { login, type LoginRequest } from '../api/AuthService';
+import { Link, useNavigate } from 'react-router-dom';
 
 function LoginPage() {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-const handleSubmit = (e: React.FormEvent) => {
+  const navigate = useNavigate();
+
+const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault(); 
     console.log({
       username,
       password,
     });
+  
+  try {
+      const credentials: LoginRequest = { username, password };
+      await login(credentials);
+      navigate('/home')
+    } catch (err: unknown) {
+      console.error(err);
+    }
   };
 
   return (
@@ -26,7 +38,7 @@ const handleSubmit = (e: React.FormEvent) => {
         <input className='input-reg -mt-6' type="password" placeholder="Password"  value={password} onChange={(e) => setPassword(e.target.value)} required />
         <button className='w-full h-16 rounded-xl bg-p750 text-white text-base hover:scale-105 duration-200' type="submit">Continue</button>
       </form> 
-      <p className='text-center font-jakarta'>New user?   <span className='font-semibold'>Register</span></p>
+      <p className='text-center font-jakarta'>New user?   <Link to="/register"><span className='font-semibold'>Register</span></Link></p>
       </div>
       </div>
     
