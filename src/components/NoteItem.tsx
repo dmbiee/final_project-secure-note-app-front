@@ -1,17 +1,15 @@
 import React from 'react';
 import { useModal } from './ModalProvider';
 import NoteModal from './NoteModal';
+import type { Note } from '../assets/types';
 
-interface Props {
-    note: {   
-        title: string,
-        date: string,
-        owner: string,
-        description: string
-    }
+
+
+interface NoteItemProps {
+  note: Note;
 }
 
-const Note: React.FC<Props> = ({ note }) => {
+const NoteItem: React.FC<NoteItemProps> = ({ note }) => {
     
     const { createModal, closeModal } = useModal();
   return (
@@ -24,4 +22,4 @@ const Note: React.FC<Props> = ({ note }) => {
   );
 };
 
-export default Note;
+export default NoteItem;

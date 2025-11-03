@@ -18,25 +18,28 @@ const handleSubmit = async (e: React.FormEvent) => {
   
   try {
       const credentials: LoginRequest = { username, password };
-      await login(credentials);
-      navigate('/home')
+    await login(credentials);
+    if (!localStorage.getItem('name')) {
+      localStorage.setItem('name', username);
+    }
+  navigate('/home')
     } catch (err: unknown) {
       console.error(err);
     }
   };
 
   return (
-      <div className='h-screen flex items-center justify-center'>
+      <div className='flex items-center justify-center h-screen'>
       <div className="register-container border border-p750 rounded-3xl bg-white grid grid-cols-1 grid-rows-[1fr_2fr] w-1/3 h-2/3 gap-4 pt-24 pb-12 px-12 min-h-[600px] max-h-screen max-w-[550px]">
-              <div className="flex justify-start items-start gap-1 flex-col">
+              <div className="flex flex-col items-start justify-start gap-1">
                   
-              <h1 className='font-jakarta text-4xl font-bold '>Login </h1>
-      <h2 className='font-jakarta text-2xl font-normal '>to get started</h2>
+              <h1 className='text-4xl font-bold font-jakarta '>Login </h1>
+      <h2 className='text-2xl font-normal font-jakarta '>to get started</h2>
       </div>
-          <form className="register-form mt-3 grid grid-cols-1 grid-rows-3 gap-4" onSubmit={handleSubmit}>
+          <form className="grid grid-cols-1 grid-rows-3 gap-4 mt-3 register-form" onSubmit={handleSubmit}>
         <input className='input-reg' type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} required />
-        <input className='input-reg -mt-6' type="password" placeholder="Password"  value={password} onChange={(e) => setPassword(e.target.value)} required />
-        <button className='w-full h-16 rounded-xl bg-p750 text-white text-base hover:scale-105 duration-200' type="submit">Continue</button>
+        <input className='-mt-6 input-reg' type="password" placeholder="Password"  value={password} onChange={(e) => setPassword(e.target.value)} required />
+        <button className='w-full h-16 text-base text-white duration-200 rounded-xl bg-p750 hover:scale-105' type="submit">Continue</button>
       </form> 
       <p className='text-center font-jakarta'>New user?   <Link to="/register"><span className='font-semibold'>Register</span></Link></p>
       </div>

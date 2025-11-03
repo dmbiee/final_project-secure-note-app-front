@@ -1,14 +1,15 @@
 import React from 'react';
+import type { Friend } from '../assets/types';
 
 interface FriendItemProps {
-  name: string;
+  friend: Friend;
   onDelete: () => void;
 }
 
-const FriendItem: React.FC<FriendItemProps> = ({ name, onDelete }) => {
+const FriendItem: React.FC<FriendItemProps> = ({ friend, onDelete }) => {
   return (
     <div className="flex items-center justify-between p-2 ml-3">
-      <span>{name}</span>
+      <span>{friend.name}</span>
       <button
         onClick={onDelete}
         className="p-2 px-3 transition rounded-xl text-g333 bg-s250 hover:bg-s500"

@@ -61,19 +61,19 @@ const handleSubmit = async(e: React.FormEvent) => {
 
 
   return (
-      <div className='h-screen flex items-center justify-center'>
+      <div className='flex items-center justify-center h-screen'>
       <div className="register-container border border-p750 rounded-3xl bg-white grid grid-cols-1 grid-rows-[1fr_2fr] w-1/3 h-2/3 gap-4 pt-24 pb-12 px-12 min-h-[600px] max-h-screen max-w-[550px]">
-              <div className="flex justify-start items-start gap-1 flex-col">
+              <div className="flex flex-col items-start justify-start gap-1">
                   
-              <h1 className='font-jakarta text-4xl font-bold '>Signup</h1>
-      <h2 className='font-jakarta text-2xl font-normal '>to get started</h2>
+              <h1 className='text-4xl font-bold font-jakarta '>Signup</h1>
+      <h2 className='text-2xl font-normal font-jakarta '>to get started</h2>
       </div>
-          <form className="register-form mt-3 grid grid-cols-1 grid-rows-3 gap-4" onSubmit={handleSubmit}>
+          <form className="grid grid-cols-1 grid-rows-3 gap-4 mt-3 register-form" onSubmit={handleSubmit}>
         <input   className={`input-reg  ${errors.username ? "!border-s500 !border-2" : "!border-gray-300"}`} type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} required />
         <input   className={`input-reg  ${errors.password ? "!border-s500 !border-2" : "!border-gray-300"}`} type="password" placeholder="Password"  value={password} onChange={(e) => setPassword(e.target.value)} required />
         <input className={`input-reg  ${errors.repeatPassword ? "!border-s500 !border-2" : "!border-gray-300"}`}
  type="password" placeholder=" Repeat Password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} required />
-        <button className='w-full h-16 rounded-xl bg-p750 text-white text-base hover:scale-105 duration-200' type="submit">Continue</button>
+        <button className='w-full h-16 text-base text-white duration-200 rounded-xl bg-p750 hover:scale-105' type="submit">Continue</button>
       </form> 
       <p className='text-center font-jakarta'>Already registered?   <Link to="/login"><span className='font-semibold'>Login</span></Link></p>
       </div>

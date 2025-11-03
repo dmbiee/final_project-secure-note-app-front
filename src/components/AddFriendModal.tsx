@@ -1,26 +1,29 @@
 import React, { useState } from 'react';
 import FriendItem from './FriendItem';
+import { useNotes } from './NotesContext';
+import type { Friend } from '../assets/types';
 
 
 interface FriendModalProps {
-  friends: string[];
+  friends: Friend[];
   onClose: () => void;
 }
 
 
 const AddFriendModal: React.FC<FriendModalProps> = ({ friends, onClose }) => {
-  const [friendList, setFriendList] = useState<string[]>(friends);
-  const [newFriend, setNewFriend] = useState('');
   
-     const handleAddFriend = () => {
-    if (newFriend.trim() && !friendList.includes(newFriend.trim())) {
-      setFriendList([...friendList, newFriend.trim()]);
-      setNewFriend('');
-    }
+    const { state, dispatch } = useNotes();
+    const [newFriendName, setNewFriendName] = useState('');
+    
+
+    const handleAddFriend = () => {
+    const newFriend: Friend = { name: newFriendName };
+    dispatch({ type: 'ADD_FRIEND', payload: newFriend });
+    setNewFriendName('');
     };
     
-    const handleDeleteFriend = (name: string) => {
-    setFriendList(friendList.filter(f => f !== name));
+    const removeFriend = (name: string) => {
+    dispatch({ type: 'REMOVE_FRIEND', payload: name });
   };
     
   return (
@@ -29,14 +32,13 @@ const AddFriendModal: React.FC<FriendModalProps> = ({ friends, onClose }) => {
 
       {/* Список друзів */}
       <div className="flex flex-col gap-2 p-2 overflow-auto border rounded-xl h-96">
-        {friendList.map(friend => (
+        {state.friends.map(friend => (
           <FriendItem
-            key={friend}
-            name={friend}
-            onDelete={() => handleDeleteFriend(friend)}
+            friend={friend}
+            onDelete={() => removeFriend(friend.name)}
           />
         ))}
-        {friendList.length === 0 && <p className="m-4 text-gray-400">No friends yet</p>}
+        {state.friends.length === 0 && <p className="m-4 text-gray-400">No friends yet</p>}
       </div>
 
       {/* Інпут та кнопка додати */}
@@ -44,8 +46,8 @@ const AddFriendModal: React.FC<FriendModalProps> = ({ friends, onClose }) => {
         <input
           type="text"
           placeholder="Add a new friend"
-          value={newFriend}
-          onChange={e => setNewFriend(e.target.value)}
+          value={newFriendName}
+          onChange={e => setNewFriendName(e.target.value)}
           className="flex-1 px-2 py-1 border rounded-xl"
         />
         <button

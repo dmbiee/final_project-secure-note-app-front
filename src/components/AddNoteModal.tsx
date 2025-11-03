@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import { useNotes } from './NotesContext';
+import type { Note } from '../assets/types';
 
 interface Props{
     onClose: () => void,
@@ -8,9 +10,21 @@ interface Props{
 const AddNoteModal: React.FC<Props> = ({ onClose }) =>  {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
+    const name = localStorage.getItem('name') ?? 'unknown';
+
+    const options = { day: 'numeric', month: 'short' } as const;
+    const formattedDate = new Date().toLocaleDateString('en-US', options);
+
+    
+    const { state, dispatch } = useNotes();
+    
+    const newNote: Note = { id: Date.now().toString(), title: title, description: description, owner: name, date: formattedDate }
 
     function handleSave() {
-        console.log(title, description)
+        dispatch({ type: "ADD_NOTE", list: "personal", payload: newNote })
+        setTitle("");
+        setDescription("");
+        onClose();
     }
 
   return (
