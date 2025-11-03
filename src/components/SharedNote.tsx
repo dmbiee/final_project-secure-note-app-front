@@ -9,13 +9,16 @@ interface NoteType {
 }
 
 interface Props {
+  title: string;
   notes: NoteType[];
+
 }
 
-const SharedNote: React.FC<Props> = ({ notes }) => {
+const SharedNote: React.FC<Props> = ({title, notes }) => {
+  
   return (
-    <div className="flex flex-col w-4/12 h-full gap-4 mt-6 font-jakarta">
-          <p className='ml-20 text-xl text-g333'>Shared Notes</p>
+    <div className="flex flex-col w-4/12 h-screen gap-4 mt-6 overflow-y-auto max-h-5/6 font-jakarta">
+          <p className='ml-20 text-xl text-g333'>{title}</p>
           
       {notes.length > 0 ? (
   notes.map((note, index) => (

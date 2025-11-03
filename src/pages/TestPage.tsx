@@ -16,7 +16,38 @@ const notesData: NoteType[] = [
         owner: 'Dmytro',
     description: 'This is your personal notes app! You can create, edit, and organize all your thoughts here.'
   },
-  {
+{
+    title: 'First Note',
+    date: '10 Oct',
+        owner: 'Dmytro',
+    description: 'This is your personal notes app! You can create, edit, and organize all your thoughts here.'
+  },
+{
+    title: 'First Note',
+    date: '10 Oct',
+        owner: 'Dmytro',
+    description: 'This is your personal notes app! You can create, edit, and organize all your thoughts here.'
+  },{
+    title: 'First Note',
+    date: '10 Oct',
+        owner: 'Dmytro',
+    description: 'This is your personal notes app! You can create, edit, and organize all your thoughts here.'
+  },{
+    title: 'First Note',
+    date: '10 Oct',
+        owner: 'Dmytro',
+    description: 'This is your personal notes app! You can create, edit, and organize all your thoughts here.'
+  },{
+    title: 'First Note',
+    date: '10 Oct',
+        owner: 'Dmytro',
+    description: 'This is your personal notes app! You can create, edit, and organize all your thoughts here.'
+  },{
+    title: 'First Note',
+    date: '10 Oct',
+        owner: 'Dmytro',
+    description: 'This is your personal notes app! You can create, edit, and organize all your thoughts here.'
+  },  {
     title: 'Second Note',
     date: '11 Oct',
         owner: 'Dmytro',
@@ -34,11 +65,11 @@ const notesData2: NoteType[] = [];
 function TestPage() {
     return (
     <>
-            <NavBar />
+            
           <div className='flex justify-center'>
       <PersonalNote notes={notesData} />
         <div className="w-px h-screen mx-10 bg-black/10"></div>
-           <SharedNote notes={notesData2}/> 
+           <SharedNote notes={notesData2} title='Shared Notes'/> 
             </div>
     </>
   );

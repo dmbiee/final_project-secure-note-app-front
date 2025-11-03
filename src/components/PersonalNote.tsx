@@ -14,7 +14,7 @@ interface Props {
 
 const PersonalNote: React.FC<Props> = ({ notes }) => {
   return (
-    <div className="flex flex-col w-5/12 h-full gap-4 mt-6 font-jakarta">
+    <div className="flex flex-col w-5/12 h-screen gap-4 mt-6 overflow-y-auto max-h-5/6 font-jakarta">
           <p className='ml-20 text-xl text-g333'>Personal Notes</p>
           
       {notes.length > 0 ? (
