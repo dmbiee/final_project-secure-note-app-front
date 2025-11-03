@@ -1,18 +1,25 @@
 import React from 'react';
+import { useModal } from './ModalProvider';
+import NoteModal from './NoteModal';
 
 interface Props {
-    title: string,
-    date: string,
-    description: string
+    note: {   
+        title: string,
+        date: string,
+        owner: string,
+        description: string
+    }
 }
 
-const Note: React.FC<Props> = ({ title, date, description }) => {
+const Note: React.FC<Props> = ({ note }) => {
     
+    const { createModal, closeModal } = useModal();
   return (
-<div className='p-5 bg-white rounded-xl border border-black/10 transition-all hover:bg-p250 hover:border-p500 w-full'>
-      <h3 className='text-g333 '>{title}</h3>
-      <p className='text-gray-500'>{date}</p>
-      <p className='text-gray-600 mt-5'>{description}</p>
+
+      <div onClick={() => createModal(<NoteModal note={note} onClose={closeModal}/>)} className='w-full p-5 transition-all bg-white border rounded-xl border-black/10 hover:bg-p250 hover:border-p500'>
+      <h3 className='text-g333 '>{note.title}</h3>
+      <p className='text-gray-500'>{note.date}</p>
+      <p className='mt-5 text-gray-600 line-clamp-5'>{note.description}</p>
     </div>
   );
 };

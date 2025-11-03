@@ -3,7 +3,8 @@ import Note from './Note';
 
 interface NoteType {
   title: string;
-  date: string;
+    date: string;
+    owner: string;
   description: string;
 }
 
@@ -13,20 +14,18 @@ interface Props {
 
 const PersonalNote: React.FC<Props> = ({ notes }) => {
   return (
-    <div className="flex flex-col gap-4 font-jakarta w-5/12 h-full mt-6">
-          <p className=' text-g333 text-xl ml-20'>Personal Notes</p>
+    <div className="flex flex-col w-5/12 h-full gap-4 mt-6 font-jakarta">
+          <p className='ml-20 text-xl text-g333'>Personal Notes</p>
           
       {notes.length > 0 ? (
   notes.map((note, index) => (
     <Note
       key={index}
-      title={note.title}
-      date={note.date}
-      description={note.description}
+        note={note}
     />
   ))
 ) : (
-  <h1 className="text-g333/40 font-jakarta text-xl mt-4 mx-20">
+  <h1 className="mx-20 mt-4 text-xl text-g333/40 font-jakarta">
     No notes yet 📝
   </h1>
 )}

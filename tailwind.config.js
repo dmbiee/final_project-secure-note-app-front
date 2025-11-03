@@ -23,6 +23,8 @@ content: [
     },
     },
   },
-  plugins: [],
+plugins: [
+  require('@tailwindcss/line-clamp'),
+],
 }
 

@@ -3,11 +3,13 @@ import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import HomePage from "./pages/HomePage";
 import TestPage from "./pages/TestPage";
+import { ModalProvider } from "./components/ModalProvider";
 
 function App() {
   return (
     <Router>
       <div className="bg-n250 min-h-screen">
+          <ModalProvider>
         <Routes>
           <Route path="/" element={<Navigate to="/login" replace />} />
           <Route path="/login" element={<LoginPage />} />
@@ -15,6 +17,7 @@ function App() {
           <Route path="/home" element={<HomePage />} />
           <Route path="/test" element={<TestPage />} />
         </Routes>
+          </ModalProvider>
       </div>
     </Router>
   );
