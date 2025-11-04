@@ -31,9 +31,9 @@ function notesReducer(state: NotesState, action: NotesAction): NotesState {
       if (action.list === 'shared') return { ...state, sharedNotes: [...state.sharedNotes, action.payload] };
       return { ...state, availableNotes: [...state.availableNotes, action.payload] };
     case 'REMOVE_NOTE':
-      if (action.list === 'personal') return { ...state, personalNotes: state.personalNotes.filter(n => n.id !== action.payload) };
-      if (action.list === 'shared') return { ...state, sharedNotes: state.sharedNotes.filter(n => n.id !== action.payload) };
-      return { ...state, availableNotes: state.availableNotes.filter(n => n.id !== action.payload) };
+      if (action.list === 'personal') return { ...state, personalNotes: state.personalNotes.filter(n => n.id.toString() !== action.payload) };
+      if (action.list === 'shared') return { ...state, sharedNotes: state.sharedNotes.filter(n => n.id.toString() !== action.payload) };
+      return { ...state, availableNotes: state.availableNotes.filter(n => n.id.toString() !== action.payload) };
     case 'ADD_FRIEND':
       return { ...state, friends: [...state.friends, action.payload] };
     case 'REMOVE_FRIEND':

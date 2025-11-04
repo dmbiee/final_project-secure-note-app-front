@@ -16,10 +16,12 @@ const AddNoteModal: React.FC<Props> = ({ onClose }) =>  {
     const formattedDate = new Date().toLocaleDateString('en-US', options);
 
     
-    const { state, dispatch } = useNotes();
+    const { dispatch } = useNotes();
     
-    const newNote: Note = { id: Date.now().toString(), title: title, description: description, owner: name, date: formattedDate }
-
+const newNote: Omit<Note, 'id' | 'owner' | 'date' | 'isShared' > = {
+  title: title,
+  description: description,
+};
     function handleSave() {
         dispatch({ type: "ADD_NOTE", list: "personal", payload: newNote })
         setTitle("");

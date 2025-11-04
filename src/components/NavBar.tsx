@@ -13,15 +13,18 @@ const NavBar = () => {
   const { createModal, closeModal } = useModal();
   const navigate = useNavigate();
   const { state, dispatch } = useNotes();
+
+  const lengthPersonal = state.personalNotes.length;
+  const lengthShared = state.sharedNotes.length;
   
 
 
 
   return (
       <div className='flex items-center justify-around w-full h-20 bg-white '>
-      <Button onClick={() => {navigate('/main/home')}} mainText='Personal note' subText='3 notes'></Button>
-      <Button onClick={() => {navigate('/main/shared')}} mainText='Shared note' subText='3 notes'></Button>
-      <AddFriend onClick={() => createModal(<AddFriendModal onClose={closeModal} friends={state.friends} />)}></AddFriend>
+      <Button onClick={() => {navigate('/main/home')}} mainText='Personal note' subText={lengthPersonal + ' notes'}></Button>
+      <Button onClick={() => {navigate('/main/shared')}} mainText='Shared note' subText={lengthShared + ' notes'}></Button>
+      <AddFriend onClick={() => createModal(<AddFriendModal onClose={closeModal} />)}></AddFriend>
       <AddNote onClick={() => createModal(<AddNoteModal onClose={closeModal}/>)}></AddNote>
       </div>
   )

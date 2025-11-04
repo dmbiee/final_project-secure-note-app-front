@@ -5,12 +5,11 @@ import type { Friend } from '../assets/types';
 
 
 interface FriendModalProps {
-  friends: Friend[];
   onClose: () => void;
 }
 
 
-const AddFriendModal: React.FC<FriendModalProps> = ({ friends, onClose }) => {
+const AddFriendModal: React.FC<FriendModalProps> = ({ onClose }) => {
   
     const { state, dispatch } = useNotes();
     const [newFriendName, setNewFriendName] = useState('');

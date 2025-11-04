@@ -18,13 +18,13 @@ const PersonalNote: React.FC<PersonalNoteProps> = ({ notes }) => {
       {notes.length > 0 ? (
   notes.map((note, index) => (
     <div className="flex row" key={index}>
-   <button onClick={() => { dispatch({ type: "REMOVE_NOTE", list: "personal", payload: note.id }) }} className='transition-opacity duration-300 opacity-0 hover:opacity-100' >
+          <button onClick={() => { dispatch({ type: "REMOVE_NOTE", list: "personal", payload: note.id.toString() }); dispatch({ type: 'REMOVE_NOTE', list: 'shared', payload: note.id.toString()}) }} className='transition-opacity duration-300 opacity-0 hover:opacity-100' >
               <img className='w-10 h-10' src="/public/trashcan.svg" alt="" />
         </button>       
       <NoteItem
       note={note}
           />
-          <button onClick={() => { dispatch({ type: "ADD_NOTE", list: "shared", payload: note }) }} className='transition-opacity duration-300 opacity-0 hover:opacity-100' >
+          <button onClick={() => { if (!state.sharedNotes.some(notes => notes.id === note.id))dispatch({ type: "ADD_NOTE", list: "shared", payload: note }) }} className='transition-opacity duration-300 opacity-0 hover:opacity-100' >
               <img className='w-10 h-10' src="/public/arrow.svg" alt="" />
         </button>
       </div>

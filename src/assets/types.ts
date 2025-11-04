@@ -1,9 +1,10 @@
 export interface Note {
-  id: string;
+  id: number;
   title: string;
   description: string;
-  date: string;
   owner: string;
+  date: string;
+  isShared: boolean;
 }
 
 export interface NoteRequest {
