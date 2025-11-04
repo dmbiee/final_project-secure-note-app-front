@@ -1,47 +1,48 @@
-import axios from 'axios';
-import type { Note } from '../assets/types';
+// src/services/NoteService.ts
+import axios from "axios";
+import type { Note } from "../assets/types";
 
-const API_BASE_URL = 'http://localhost:8080/api/notes'; // або твій бекенд-URL
-
-// Створюємо інстанс axios з налаштуваннями
-const api = axios.create({
-  baseURL: API_BASE_URL,
-  withCredentials: true, // якщо використовуєш cookie/JWT у header
-});
+const API_URL = "http://localhost:8080/api/notes"; // 👈 має збігатися з @RequestMapping
 
 export const NoteService = {
-  // Отримати всі нотатки поточного користувача
-  async getAllNotes(): Promise<Note[]> {
-    const response = await api.get<Note[]>('/');
+  // Отримати всі нотатки користувача
+  getAllNotes: async (): Promise<Note[]> => {
+    const response = await axios.get(API_URL, { withCredentials: true });
     return response.data;
   },
 
   // Створити нову нотатку
-  async createNote(note: Omit<Note, 'id' | 'owner' | 'date' | 'isShared'>): Promise<Note> {
-    const response = await api.post<Note>('/', note);
+  createNote: async (note: Omit<Note, 'id' | 'owner' | 'date' | 'isShared'>): Promise<Note> => {
+    const response = await axios.post(API_URL, note, { withCredentials: true });
     return response.data;
   },
 
-  // Оновити існуючу нотатку
-  async updateNote(id: number, updatedNote: Partial<Note>): Promise<Note> {
-    const response = await api.put<Note>(`/${id}`, updatedNote);
+  // Оновити нотатку
+  updateNote: async (id: number, updatedNote: Note): Promise<Note> => {
+    const response = await axios.put(`${API_URL}/${id}`, updatedNote, {
+      withCredentials: true,
+    });
     return response.data;
   },
 
   // Видалити нотатку
-  async deleteNote(id: number): Promise<void> {
-    await api.delete(`/${id}`);
+  deleteNote: async (id: number): Promise<void> => {
+    await axios.delete(`${API_URL}/${id}`, { withCredentials: true });
   },
 
-  // Отримати всі нотатки, які є спільними (shared)
-  async getSharedNotes(): Promise<Note[]> {
-    const response = await api.get<Note[]>('/shared');
+  // Отримати всі "shared" нотатки
+  getSharedNotes: async (): Promise<Note[]> => {
+    const response = await axios.get(`${API_URL}/shared`, {
+      withCredentials: true,
+    });
     return response.data;
   },
 
-  // Перемкнути статус "shared"
-  async toggleShare(id: number): Promise<Note> {
-    const response = await api.put<Note>(`/${id}/share`);
+  // Перемкнути статус "shared" у нотатки
+  toggleShare: async (id: number): Promise<Note> => {
+    const response = await axios.put(`${API_URL}/${id}/share`, {}, {
+      withCredentials: true,
+    });
     return response.data;
   },
 };

@@ -2,6 +2,7 @@ import React from 'react';
 import NoteItem from './NoteItem';
 import type { Note } from '../assets/types';
 import { useNotes } from './NotesContext';
+import { NoteService } from '../api/NoteService';
 
 
 
@@ -20,7 +21,7 @@ const SharedNote: React.FC<Props> = ({title}) => {
       {state.sharedNotes.length > 0 ? (
   state.sharedNotes.map((note, index) => (
     <div className="flex row">
-      <button onClick={() => { dispatch({ type: "REMOVE_NOTE", list: "shared", payload: note.id.toString() })}} className='transition-opacity duration-300 opacity-0 hover:opacity-100'>
+      <button onClick={() => { dispatch({ type: "REMOVE_NOTE", list: "shared", payload: note.id.toString() });  NoteService.toggleShare(note.id)}} className='transition-opacity duration-300 opacity-0 hover:opacity-100'>
       <img src="../../public/arrow.svg" className='w-10 h-10 rotate-180' alt="" /> 
       </button>
     

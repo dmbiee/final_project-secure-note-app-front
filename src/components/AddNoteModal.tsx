@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useNotes } from './NotesContext';
 import type { Note } from '../assets/types';
+import { NoteService } from '../api/NoteService';
 
 interface Props{
     onClose: () => void,
@@ -22,8 +23,11 @@ const newNote: Omit<Note, 'id' | 'owner' | 'date' | 'isShared' > = {
   title: title,
   description: description,
 };
-    function handleSave() {
-        dispatch({ type: "ADD_NOTE", list: "personal", payload: newNote })
+    async function handleSave() {
+        await NoteService.createNote(newNote);
+        const notes = await NoteService.getAllNotes();
+        dispatch({ type: "SET_PERSONAL", payload: notes });
+        
         setTitle("");
         setDescription("");
         onClose();

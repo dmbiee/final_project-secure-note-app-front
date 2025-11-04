@@ -22,7 +22,7 @@ const handleSubmit = async (e: React.FormEvent) => {
     if (!localStorage.getItem('name')) {
       localStorage.setItem('name', username);
     }
-  navigate('/home')
+  navigate('/main/home')
     } catch (err: unknown) {
       console.error(err);
     }
