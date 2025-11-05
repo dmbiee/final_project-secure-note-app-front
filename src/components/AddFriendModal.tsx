@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import FriendItem from './FriendItem';
-import { useNotes } from './NotesContext';
 import type { Friend } from '../assets/types';
 
 
@@ -11,19 +10,14 @@ interface FriendModalProps {
 
 const AddFriendModal: React.FC<FriendModalProps> = ({ onClose }) => {
   
-    const { state, dispatch } = useNotes();
     const [newFriendName, setNewFriendName] = useState('');
     
 
     const handleAddFriend = () => {
     const newFriend: Friend = { name: newFriendName };
-    dispatch({ type: 'ADD_FRIEND', payload: newFriend });
     setNewFriendName('');
     };
     
-    const removeFriend = (name: string) => {
-    dispatch({ type: 'REMOVE_FRIEND', payload: name });
-  };
     
   return (
     <div className="flex flex-col gap-4">
@@ -31,13 +25,13 @@ const AddFriendModal: React.FC<FriendModalProps> = ({ onClose }) => {
 
       {/* Список друзів */}
       <div className="flex flex-col gap-2 p-2 overflow-auto border rounded-xl h-96">
-        {state.friends.map(friend => (
+        {/* {state.friends.map(friend => (
           <FriendItem
             friend={friend}
             onDelete={() => removeFriend(friend.name)}
           />
         ))}
-        {state.friends.length === 0 && <p className="m-4 text-gray-400">No friends yet</p>}
+        {state.friends.length === 0 && <p className="m-4 text-gray-400">No friends yet</p>} */}
       </div>
 
       {/* Інпут та кнопка додати */}

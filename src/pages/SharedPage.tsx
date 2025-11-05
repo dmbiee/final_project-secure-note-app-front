@@ -1,17 +1,10 @@
-import React from "react";
-import SharedNote from "../components/SharedNote";
+import React, { useEffect } from "react";
 import AvailableNotes from "../components/AvailableNotes";
 import type { Note } from "../assets/types";
-import { useNotes } from "../components/NotesContext";
+import { useNavigate } from "react-router-dom";
+import { checkAuthorization } from "../api/AuthService";
 
 
-interface NoteType {
-    id: string;
-  owner: string;
-  title: string;
-  date: string;
-  description: string;
-}
 
 const mockNotes: Note[] = [
   {
@@ -62,7 +55,14 @@ const mockNotes: Note[] = [
 ];
 
 const SharedPage = () => {
-        const { state, dispatch } = useNotes();
+    
+      const navigate = useNavigate();
+
+  useEffect(() => {
+
+      checkAuthorization(navigate);
+
+  }, [navigate]);
   const notesByOwner: { [owner: string]: Note[] } = {};
     const notes: Note[] = mockNotes;
     

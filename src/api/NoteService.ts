@@ -1,48 +1,36 @@
-// src/services/NoteService.ts
-import axios from "axios";
-import type { Note } from "../assets/types";
+import axios from 'axios';
+import type { Note } from '../assets/types';
 
-const API_URL = "http://localhost:8080/api/notes"; // 👈 має збігатися з @RequestMapping
+const API_URL = 'http://localhost:8080/api/notes';
 
 export const NoteService = {
-  // Отримати всі нотатки користувача
-  getAllNotes: async (): Promise<Note[]> => {
-    const response = await axios.get(API_URL, { withCredentials: true });
-    return response.data;
+
+  async getNotes(): Promise<Note[]> {
+    const res = await axios.get(API_URL, { withCredentials: true });
+    return res.data;
   },
 
-  // Створити нову нотатку
-  createNote: async (note: Omit<Note, 'id' | 'owner' | 'date' | 'isShared'>): Promise<Note> => {
-    const response = await axios.post(API_URL, note, { withCredentials: true });
-    return response.data;
+  async create(note: Omit<Note, 'id' | 'date' | 'owner' | 'isShared'>): Promise<Note> {
+    const res = await axios.post(API_URL, note, { withCredentials: true });
+    return res.data;
   },
 
-  // Оновити нотатку
-  updateNote: async (id: number, updatedNote: Note): Promise<Note> => {
-    const response = await axios.put(`${API_URL}/${id}`, updatedNote, {
-      withCredentials: true,
-    });
-    return response.data;
+  async update(id: number, note: Partial<Note>): Promise<Note> {
+    const res = await axios.put(`${API_URL}/${id}`, note, { withCredentials: true });
+    return res.data;
   },
 
-  // Видалити нотатку
-  deleteNote: async (id: number): Promise<void> => {
+  async remove(id: number): Promise<void> {
     await axios.delete(`${API_URL}/${id}`, { withCredentials: true });
   },
 
-  // Отримати всі "shared" нотатки
-  getSharedNotes: async (): Promise<Note[]> => {
-    const response = await axios.get(`${API_URL}/shared`, {
-      withCredentials: true,
-    });
-    return response.data;
+  async toggleShare(id: number): Promise<Note> {
+      const res = await axios.put(`${API_URL}/${id}/share`, {}, { withCredentials: true });
+    return res.data;
   },
 
-  // Перемкнути статус "shared" у нотатки
-  toggleShare: async (id: number): Promise<Note> => {
-    const response = await axios.put(`${API_URL}/${id}/share`, {}, {
-      withCredentials: true,
-    });
-    return response.data;
+  async getShared(): Promise<Note[]> {
+      const res = await axios.get(`${API_URL}/shared`, { withCredentials: true });
+    return res.data;
   },
 };

@@ -6,16 +6,18 @@ import AddNoteModal from './AddNoteModal';
 import AddFriend from './AddFriend';
 import AddFriendModal from './AddFriendModal';
 import { useNavigate } from 'react-router-dom';
-import { useNotes } from './NotesContext';
+import { useNotes } from '../hooks/useNote';
 
 
 const NavBar = () => {
   const { createModal, closeModal } = useModal();
   const navigate = useNavigate();
-  const { state, dispatch } = useNotes();
 
-  const lengthPersonal = state.personalNotes.length;
-  const lengthShared = state.sharedNotes.length;
+const { notesQuery } = useNotes();
+  const { data: notes = [] } = notesQuery;
+
+  const lengthPersonal = notes.length;
+  const lengthShared = notes.filter(note => note.isShared).length;
   
 
 

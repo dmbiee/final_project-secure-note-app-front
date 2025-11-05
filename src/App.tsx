@@ -6,14 +6,12 @@ import TestPage from "./pages/TestPage";
 import { ModalProvider } from "./components/ModalProvider";
 import Layout from "./components/Layout";
 import SharedPage from "./pages/SharedPage";
-import { NotesProvider } from "./components/NotesContext";
 
 function App() {
   
   return (
     <Router>
       <div className="min-h-screen bg-n250">
-        <NotesProvider>
           <ModalProvider>
           <Routes>
             <Route path="/" element={<Navigate to="/login" replace />} />
@@ -27,7 +25,6 @@ function App() {
             </Route>
           </Routes>
           </ModalProvider>
-        </NotesProvider>  
       </div>
     </Router>
   );
