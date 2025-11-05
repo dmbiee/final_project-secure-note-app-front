@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "/api/friends";
+const API_URL = "http://localhost:8080/api/friends";
 
 export interface Friend {
   id: number;
@@ -15,7 +15,7 @@ const api = axios.create({
 
 export const FriendService = {
   async getMyFriends(): Promise<Friend[]> {
-    const response = await api.get("/");
+    const response = await api.get("");
     return response.data;
   },
 

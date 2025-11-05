@@ -36,6 +36,7 @@ export function useNotes() {
     addNote,
     updateNote,
     deleteNote,
-    toggleShare,
+      toggleShare,
+    
   };
 }
