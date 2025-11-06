@@ -1,73 +1,139 @@
-# React + TypeScript + Vite
+# Secure Note App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> **A convenient and secure app for storing personal and shared notes with friend management.**
 
-Currently, two official plugins are available:
+## 📦 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Create, edit, and delete notes
+- Share notes with friends
+- Manage your friends list
+- User authentication (register, login, logout)
+- Modern interface built with React + TailwindCSS
 
-## React Compiler
+## 🛠️ Technologies
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **React** (TypeScript)
+- **TailwindCSS**
+- **React Query** for API handling
+- **Framer Motion** for modal animations
+- **Vite** for fast development
+- **Node.js** 
 
-## Expanding the ESLint configuration
+## 🚀 Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/dmbiee/secure-note-app-front.git
+   cd secure-note-app-front
+   ```
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+2. Install dependencies:
+   ```sh
+   npm install
+   ```
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+3. Start the app:
+   ```sh
+   npm run dev
+   ```
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+4. Make sure the backend server is running at `localhost:8080` (see backend repository).
+
+## 🖼️ Screenshots
+
+> Add screenshots of the interface for better overview.
+
+![Home Page](screenshots/home.png)
+![Shared Notes](screenshots/shared.png)
+![Add Note Modal](screenshots/add-note-modal.png)
+![Friends Management](screenshots/friends-modal.png)
+
+## 🧩 Project Structure
+
+```
+src/
+  ├── api/              # Backend API requests
+  ├── assets/           # Types, static data
+  ├── components/       # UI components
+  ├── hooks/            # Custom hooks
+  ├── pages/            # Pages
+  ├── App.tsx           # Main component
+  └── main.tsx          # Entry point
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🗂️ Main Components
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- **NavBar** — main navigation
+- **PersonalNote** — personal notes
+- **SharedNote** — notes shared with you
+- **AddNoteModal** — modal for creating a note
+- **AddFriendModal** — modal for adding a friend
+- **NoteItem** — note card
+- **NoteModal** — note details view
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 📋 Component Diagram
+
+```mermaid
+classDiagram
+    class App {
+        +Routes
+    }
+    class Layout {
+        +NavBar
+        +Outlet
+    }
+    class NavBar {
+        +Button
+        +AddNote
+        +AddFriend
+    }
+    class Button {
+        +mainText
+        +subText
+        +onClick
+    }
+    class AddNote {
+        +onClick
+    }
+    class AddFriend {
+        +onClick
+    }
+    class AddNoteModal {
+        +onClose
+    }
+    class AddFriendModal {
+        +onClose
+    }
+    class NoteItem {
+        +note
+    }
+    class NoteModal {
+        +note
+        +onClose
+    }
+    class PersonalNote
+    class SharedNote
+    class AvailableNotes {
+        +title
+        +notes
+    }
+    App --> Layout
+    Layout --> NavBar
+    NavBar --> Button
+    NavBar --> AddNote
+    NavBar --> AddFriend
+    AddNote --> AddNoteModal
+    AddFriend --> AddFriendModal
+    PersonalNote --> NoteItem
+    SharedNote --> NoteItem
+    AvailableNotes --> NoteItem
+    NoteItem --> NoteModal
 ```
+
+## 👤 Author
+
+- [dmbiee](https://github.com/dmbiee)
+
+---
+
+> _Created for an educational project. All rights reserved._
