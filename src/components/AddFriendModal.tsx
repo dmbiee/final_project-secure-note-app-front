@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import FriendItem from './FriendItem';
-import type { Friend } from '../assets/types';
+import { useFriends } from '../hooks/useFriend';
+import type { Friend } from '../api/FriendSrevice';
 
 
 interface FriendModalProps {
@@ -9,13 +10,16 @@ interface FriendModalProps {
 
 
 const AddFriendModal: React.FC<FriendModalProps> = ({ onClose }) => {
-  
+    
+    const { friendsQuery, addFriend, deleteFriend } = useFriends();
+    const { data: friends = [] } = friendsQuery;
+
     const [newFriendName, setNewFriendName] = useState('');
     
 
     const handleAddFriend = () => {
-    const newFriend: Friend = { name: newFriendName };
-    setNewFriendName('');
+        addFriend.mutate(newFriendName);
+        setNewFriendName('');
     };
     
     
@@ -23,18 +27,17 @@ const AddFriendModal: React.FC<FriendModalProps> = ({ onClose }) => {
     <div className="flex flex-col gap-4">
       <h2 className="mt-5 text-2xl font-bold text-g333">Manage Friends</h2>
 
-      {/* Список друзів */}
       <div className="flex flex-col gap-2 p-2 overflow-auto border rounded-xl h-96">
-        {/* {state.friends.map(friend => (
+        {friends?.map((friend: Friend) => (
           <FriendItem
+            key={friend.id}
             friend={friend}
-            onDelete={() => removeFriend(friend.name)}
+            onDelete={() => deleteFriend.mutate(friend.friend)}
           />
         ))}
-        {state.friends.length === 0 && <p className="m-4 text-gray-400">No friends yet</p>} */}
+        {friends?.length === 0 && <p className="m-4 text-gray-400">No friends yet</p>}
       </div>
 
-      {/* Інпут та кнопка додати */}
       <div className="flex gap-4 mt-4">
         <input
           type="text"
@@ -51,7 +54,6 @@ const AddFriendModal: React.FC<FriendModalProps> = ({ onClose }) => {
         </button>
       </div>
 
-      {/* Підтвердити */}
       <button
         onClick={onClose}
         className="px-4 py-2 mt-2 transition text-g333 bg-p500 rounded-xl hover:bg-p750 hover:text-white"

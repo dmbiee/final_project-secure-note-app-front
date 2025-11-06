@@ -71,3 +71,18 @@ export async function checkAuthorization(navigate: NavigateFunction) {
     navigate("/login");
   }
 }
+export async function logout(navigate: NavigateFunction) {
+  try {
+    const res = await fetch("http://localhost:8080/api/auth/logout", {
+      method: "POST",
+      credentials: "include",
+    });
+
+    if (res.status === 200) {
+      navigate("/login");
+    }
+
+  } catch {
+    navigate("/login");
+  }
+}

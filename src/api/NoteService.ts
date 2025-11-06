@@ -33,4 +33,9 @@ export const NoteService = {
       const res = await axios.get(`${API_URL}/shared`, { withCredentials: true });
     return res.data;
   },
+
+    async getAwailable(): Promise<Note[]>{
+        const res = await axios.get(`${API_URL}/awailable`, { withCredentials: true });
+        return res.data;
+  }
 };

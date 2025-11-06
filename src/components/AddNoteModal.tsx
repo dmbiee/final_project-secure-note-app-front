@@ -34,12 +34,10 @@ const AddNoteModal: React.FC<Props> = ({ onClose }) =>  {
   return (
  <div className="relative w-full h-full bg-white rounded-2xl font-jakarta">
 
-        {/* Title */}
         <h2 className="mb-4 text-2xl font-bold text-center text-gray-800">
           New note
         </h2>
 
-        {/* Inputs */}
         <div className="flex flex-col gap-8">
           <input
             type="text"
@@ -56,7 +54,6 @@ const AddNoteModal: React.FC<Props> = ({ onClose }) =>  {
           />
         </div>
 
-        {/* Buttons */}
         <div className="flex justify-end gap-3 mt-12">
           <button
             onClick={onClose}

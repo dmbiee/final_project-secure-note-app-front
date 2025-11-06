@@ -17,10 +17,9 @@ function App() {
             <Route path="/" element={<Navigate to="/login" replace />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
-            <Route path="/home" element={<HomePage />} />
             <Route path="/test" element={<TestPage />} />
             <Route path="/main" element={<Layout />}>
-              <Route path="home" element={<TestPage />} />
+              <Route path="home" element={<HomePage />} />
               <Route path="shared" element={<SharedPage />} />
             </Route>
           </Routes>

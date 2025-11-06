@@ -1,5 +1,5 @@
 import React from 'react';
-import type { Friend } from '../assets/types';
+import type { Friend } from '../api/FriendSrevice';
 
 interface FriendItemProps {
   friend: Friend;
@@ -9,7 +9,7 @@ interface FriendItemProps {
 const FriendItem: React.FC<FriendItemProps> = ({ friend, onDelete }) => {
   return (
     <div className="flex items-center justify-between p-2 ml-3">
-      <span>{friend.name}</span>
+      <span>{friend.friend}</span>
       <button
         onClick={onDelete}
         className="p-2 px-3 transition rounded-xl text-g333 bg-s250 hover:bg-s500"
