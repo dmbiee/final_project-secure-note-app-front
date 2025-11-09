@@ -1,6 +1,6 @@
 import type { NavigateFunction } from "react-router-dom";
 import type { LoginRequest, RegisterRequest } from "../assets/types";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 
 
 const API_URL = "http://localhost:8080/api/auth";
@@ -24,21 +24,37 @@ export const AuthService = {
   },
 
   async checkAuthorization(navigate: NavigateFunction) {
-    const response = await api.get("/check")
+    try {
+      const response = await api.get("/check")
+      if (response.status != 200) {
+        navigate("/login")
+      }
+      return response.data
 
-    if (response.status != 200) {
-      navigate("/login")
+    } catch (error) {
+      const AxiosError = error as AxiosError
+      if (AxiosError.response && AxiosError.response.status === 403) {
+        navigate("/login")
+      }
     }
-    return response.data;
   },
 
   async logout(navigate: NavigateFunction) {
-    const response = await api.post("/logout")
+    try {
+      const response = await api.get("/logout")
+      if (response.status == 200) {
+        navigate("/login")
+      }
+      return response.data
 
-    if (response.status == 200) {
-      navigate("/login")
+    } catch (error) {
+      const AxiosError = error as AxiosError
+      if (AxiosError.response && AxiosError.response.status === 403) {
+        navigate("/login")
+      }
     }
-    return response.data
+
+
   }
 
 }

@@ -1,15 +1,15 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { checkAuthorization } from "../api/AuthService";
 import PersonalNote from "../components/PersonalNote";
 import SharedNote from "../components/SharedNote";
+import { AuthService } from "../api/AuthService";
 
 const HomePage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
 
-      checkAuthorization(navigate);
+     AuthService.checkAuthorization(navigate);
 
   }, [navigate]);
 

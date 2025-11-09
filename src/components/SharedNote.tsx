@@ -10,7 +10,6 @@ const SharedNote: React.FC = () => {
   const { data: notes = [] } = notesQuery;
   
   const sharedNotes = notes.filter(note => note.isShared === true);
-  console.log(notes)
 
   return (
     <div className="flex flex-col w-4/12 h-screen gap-4 mt-6 overflow-y-auto max-h-5/6 font-jakarta">
