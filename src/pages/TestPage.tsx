@@ -2,7 +2,7 @@ import React, { useEffect} from 'react';
 import PersonalNote from '../components/PersonalNote';
 import SharedNote from '../components/SharedNote';
 import { useNavigate } from 'react-router-dom';
-import { checkAuthorization } from '../api/AuthService';
+import { AuthService } from '../api/AuthService';
 
 
 function TestPage() {
@@ -10,7 +10,7 @@ function TestPage() {
 
   useEffect(() => {
 
-      checkAuthorization(navigate);
+      AuthService.checkAuthorization(navigate);
 
   }, [navigate]);
 

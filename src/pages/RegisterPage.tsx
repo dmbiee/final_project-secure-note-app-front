@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
-import { authService } from '../api/AuthService';
 import { Link, useNavigate } from 'react-router-dom';
+import { AuthService } from '../api/AuthService';
+import type { RegisterRequest } from '../assets/types';
 
 function RegisterPage() {
 
@@ -47,9 +48,9 @@ const handleSubmit = async(e: React.FormEvent) => {
   console.log(hasError)
   if (hasError) return;
 
-    try {
-      const data = await authService.register({ username, password });
-      console.log(`Користувач зареєстрований! ID: ${data.token}`);
+  try {
+      const register: RegisterRequest = {username,password}
+      AuthService.register(register)
       setUsername("");
       setPassword("");
       setConfirmPassword("");

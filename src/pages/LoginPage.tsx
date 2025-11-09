@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
-import { login, type LoginRequest } from '../api/AuthService';
+import { AuthService } from '../api/AuthService';
 import { Link, useNavigate } from 'react-router-dom';
+import type { LoginRequest } from '../assets/types';
 
 function LoginPage() {
 
@@ -18,7 +19,7 @@ const handleSubmit = async (e: React.FormEvent) => {
   
   try {
       const credentials: LoginRequest = { username, password };
-    await login(credentials);
+    await AuthService.login(credentials);
     if (!localStorage.getItem('name')) {
       localStorage.setItem('name', username);
     }

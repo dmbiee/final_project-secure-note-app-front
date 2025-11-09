@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 import AvailableNotes from "../components/AvailableNotes";
 import type { Note } from "../assets/types";
 import { useNavigate } from "react-router-dom";
-import { checkAuthorization } from "../api/AuthService";
 import { NoteService } from "../api/NoteService";
+import { AuthService } from "../api/AuthService";
 
 const SharedPage = () => {
     
@@ -11,7 +11,7 @@ const SharedPage = () => {
 
   useEffect(() => {
 
-      checkAuthorization(navigate);
+     AuthService.checkAuthorization(navigate);
 
   }, [navigate]);
     

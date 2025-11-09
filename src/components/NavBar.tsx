@@ -7,7 +7,7 @@ import AddFriend from './AddFriend';
 import AddFriendModal from './AddFriendModal';
 import { useNavigate } from 'react-router-dom';
 import { useNotes } from '../hooks/useNote';
-import { logout } from '../api/AuthService';
+import { AuthService } from '../api/AuthService';
 
 
 const NavBar = () => {
@@ -29,7 +29,7 @@ const { notesQuery } = useNotes();
       <Button onClick={() => {navigate('/main/shared')}} mainText='Shared note' subText={lengthShared + ' notes'}></Button>
       <AddFriend onClick={() => createModal(<AddFriendModal onClose={closeModal} />)}></AddFriend>
       <AddNote onClick={() => createModal(<AddNoteModal onClose={closeModal} />)}></AddNote>
-      <button onClick={() => logout(navigate)} className='fixed w-10 h-10 transition-all duration-200 top-5 right-5 opacity-10 hover:opacity-40 hover:scale-105'> <img src="../../public/logout.svg" alt="" /></button>
+      <button onClick={() => AuthService.logout(navigate)} className='fixed w-10 h-10 transition-all duration-200 top-5 right-5 opacity-10 hover:opacity-40 hover:scale-105'> <img src="../../public/logout.svg" alt="" /></button>
       </div>
   )
 }
